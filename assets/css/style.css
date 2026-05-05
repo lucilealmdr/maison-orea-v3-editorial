@@ -359,3 +359,38 @@ section { padding-block: clamp(4rem, 8vw, 8rem); position: relative; }
 .amenity:nth-child(even) { padding-left: 2rem; }
 .amenity .num { font-family: var(--serif); font-style: italic; color: var(--or-fonce); font-size: 0.9rem; }
 @media (max-width: 600px) { .amenity-grid { grid-template-columns: 1fr; } .amenity:nth-child(odd) { border-right: 0; padding-right: 0; } .amenity:nth-child(even) { padding-left: 0; } }
+
+
+/* ============================================
+   PATCH RESPONSIVE MOBILE (ajout v2)
+   ============================================ */
+@media (max-width: 768px) {
+  /* Forms : champs en 1 colonne au lieu de 2 */
+  .field-row { grid-template-columns: 1fr; gap: 0; }
+
+  /* Amenity grid en 1 colonne */
+  .amenity-grid { grid-template-columns: 1fr; gap: 0; }
+
+  /* Cible les inline styles grid 2-3-4 cols → 1 col mobile */
+  div[style*="grid-template-columns: 1fr 1fr"],
+  div[style*="grid-template-columns: repeat(3"],
+  div[style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* V3 : sous-titre header secondaire caché sur mobile */
+  .brand-tag-sub { display: none; }
+
+  /* V3 : cards de maisons en 1 col */
+  .lodge-edit { grid-template-columns: 1fr; gap: 3rem; }
+
+  /* V3 : amenity (annule les bordures alternées) */
+  .amenity:nth-child(odd) { border-right: 0; padding-right: 0; }
+  .amenity:nth-child(even) { padding-left: 0; }
+
+  /* V3 : six engagements (3 cols par défaut) → 1 col sur mobile */
+  /* Ciblé via inline style déjà géré par le patch commun */
+}
